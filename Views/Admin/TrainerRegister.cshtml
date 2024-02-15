@@ -1,0 +1,208 @@
+﻿@using AimsManagement1.Models;
+@model StudTrainRegModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainer Registration</title>
+    <style>
+        .body1 {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5f5;
+            margin: 0;
+        }
+
+        .form1 {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 40%;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #2691d9;
+            }
+
+        @@media only screen and (max-width: 768px) {
+            .form1 {
+                width: 90%; /* Adjust the width for small screens */
+                max-width: none; /* Remove max-width for small screens */
+            }
+
+            input {
+                margin-bottom: 10px; /* Adjust the margin for small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <video muted autoplay loop style="block-size:fit-content; width:100%;height:70%">
+
+            <source src="~/images/trainervideo.mp4" type="video/mp4" />
+
+        </video>
+
+    </div>
+
+    <div class="body1" id="body1">
+
+        @using (Html.BeginForm("StdRegister", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "registrationForm" }))
+        {
+
+
+            <div class="form1" id="form1">
+                <h2>Trainer Registration</h2>
+                <label for="firstName">First Name</label>
+                @Html.TextBoxFor(m => m.FirstName, new { type = "text", id = "firstName", name = "firstName" })
+                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+
+
+                <label for="lastName">Last Name</label>
+                @Html.TextBoxFor(m => m.LastName, new { type = "text", id = "lastName", name = "lastName" })
+                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+
+                <label for="address">Address</label>
+                @Html.TextBoxFor(m => m.Address, new { type = "text", id = "Address", name = "Address" })
+                @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+
+
+                <label for="district">District</label>
+                @Html.TextBoxFor(m => m.District, new { type = "text", id = "District", name = "District" })
+                @Html.ValidationMessageFor(m => m.District, "", new { @class = "text-danger" })
+
+
+                <label for="state">State</label>
+                @Html.TextBoxFor(m => m.State, new { type = "text", id = "State", name = "State" })
+                @Html.ValidationMessageFor(m => m.State, "", new { @class = "text-danger" })
+
+
+                <label for="email">Email</label>
+                @Html.TextBoxFor(m => m.Email, new { type = "email", id = "email", name = "email" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+
+                <label for="phone">Phone Number</label>
+                @Html.TextBoxFor(m => m.PhoneNumber, new { type = "tel", id = "phone", name = "phone" })
+                @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+
+
+
+                <label for="password">Password</label>
+                @Html.TextBoxFor(m => m.Password, new { type = "password", id = "password", name = "password" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+
+
+                <label for="confirmPassword">Confirm Password</label>
+                @Html.TextBoxFor(m => m.ConfirmPassword, new { type = "password", id = "confirmPassword", name = "confirmPassword" })
+                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+
+
+
+
+                <label for="education">Education</label>
+                @Html.TextBoxFor(m => m.Education, new { type = "education", id = "Education", name = "Education" })
+                @Html.ValidationMessageFor(m => m.Education, "", new { @class = "text-danger" })
+
+
+
+                <label for="course">Course</label>
+                @Html.TextBoxFor(m => m.Course, new { type = "text", id = "course", name = "course" })
+                @Html.ValidationMessageFor(m => m.Course, "", new { @class = "text-danger" })
+
+
+
+
+                <label for="passportPhoto">Passport Photo</label>
+
+
+                @Html.TextBoxFor(m => m.PassportPhoto, new { type = "file", id = "passportPhoto", name = "passportPhoto", accept = "image/*", onchange = "previewImage('passportPhoto', 'passportPhotoPreview')" })
+                @Html.ValidationMessageFor(m => m.PassportPhoto, "", new { @class = "text-danger" })
+
+
+                <div id="passportPhotoPreview" class="image-preview"></div>
+
+                <label for="identityPhoto">Identity Proof</label>
+
+                @Html.TextBoxFor(m => m.IdentityProof, new { type = "file", id = "identityPhoto", name = "identityPhoto", accept = "image/*", onchange = "previewImage('passportPhoto', 'passportPhotoPreview')" })
+                @Html.ValidationMessageFor(m => m.IdentityProof, "", new { @class = "text-danger" })
+
+
+                <div id="identityPhotoPreview" class="image-preview"></div>
+
+                <input type="submit" value="submit" name="submit" class="btn btn-primary btn-block">
+
+
+            </div>
+        }
+
+    </div>
+
+    <script>
+        function previewImage(inputId, previewId) {
+            const input = document.getElementById(inputId);
+            const preview = document.getElementById(previewId);
+            const file = input.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.width = '200px';
+                    img.style.height = '150px';
+
+                    preview.innerHTML = '';
+                    preview.appendChild(img);
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                preview.innerHTML = '';
+            }
+        }
+
+
+    </script>
+</body>
+</html>
+

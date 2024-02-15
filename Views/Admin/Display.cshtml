@@ -1,0 +1,75 @@
+﻿@model IEnumerable<AimsManagement1.Models.StudTrainRegModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        height: 100%;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: white;
+    }
+</style>
+<h3 class="text-center text-uppercase">All Student</h3>
+
+<p>
+    <a asp-action="StdRegister" class="btn btn-primary rounded-0"><i class="fa fa-plus-circle"></i> Add New</a>
+</p>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.PassportPhoto)</th>
+            <th>@Html.DisplayNameFor(model => model.IdentityProof)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+            <th>@Html.DisplayNameFor(model => model.LastName)</th>
+            <th>@Html.DisplayNameFor(model => model.Education)</th>
+            <th>@Html.DisplayNameFor(model => model.Course)</th>
+           
+            <th>Action(s)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">
+                        <img src="~/Uploads/@item.PassportPhoto" class="img-thumbnail" height="100" width="100" asp-append-version="true" />
+                    </a>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">
+                        <img src="~/Uploads/@item.IdentityProof" class="img-thumbnail" height="100" width="100" asp-append-version="true" />
+                    </a>
+                </td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Education</td>
+                <td>@item.Course</td>
+               
+                <td>
+                    
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary rounded-0"><i class="fa fa-plus-circle"></i>Details</a>
+                    <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-primary rounded-0"><i class="fa fa-plus-circle"></i>Update</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary rounded-0"><i class="fa fa-plus-circle"></i>Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,229 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Login Page</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+        section {
+            overflow: hidden;
+            padding: 40px 40px;
+        }
+
+        .container1 {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        h3 {
+            font-family: roboto;
+            font-size: 4.3rem;
+            font-weight: 600;
+            text-align: center;
+            width: 100%; /* Set width to 100% for smaller screens */
+            margin-bottom: 20px; /* Added margin for better spacing */
+        }
+
+        h6 {
+            background: #f9f9f9;
+            width: calc(400px - 20px);
+            padding: 20px 40px !important;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            transition: 0.5s all;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4); /* Added shadow */
+            /* Hover effect */
+            cursor: pointer;
+        }
+
+            h6:hover {
+                background-color: #e0e0e0;
+                box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.8); /* Increase shadow on hover */
+            }
+
+        @@media (max-width: 768px) {
+            h6 {
+                background: #f9f9f9;
+                width: calc(150px - 20px); /* Adjusted width for smaller screens */
+                padding: 20px 10px !important; /* Adjusted padding for smaller screens */
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                font-size: 14px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                transition: 0.1s all;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+                cursor: pointer;
+            }
+
+                h6:hover {
+                    background-color: #e0e0e0;
+                    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.8);
+                }
+
+                h6 div img {
+                    block-size: 20px;
+                }
+
+            h3 {
+                font-size: 1rem; /* Adjusted font size for smaller screens */
+            }
+        }
+
+    </style>
+</head>
+
+
+
+<body style="width:100%">
+    @using (Html.BeginForm())
+    {
+
+        <div>
+            <video muted autoplay loop style="block-size:fit-content; width:100%;height:70%">
+
+                <source src="~/images/untitled.mp4" type="video/mp4" />
+
+            </video>
+
+        </div>
+        <section id="job-op">
+            <h3>
+                Key Features For Admins
+            </h3>
+            <div class="container1">
+
+
+                <div class="Opnings-button">
+
+
+                    <a href="@Url.Action("StdRegister", "Admin")" style="text-decoration:none;font-size:40px;color:black;text-align:center">
+                        <h6>
+                            <div><img src="~/images/regist.png" /></div>
+                            <div>Register Student</div>
+                        </h6>
+                    </a>
+
+
+                </div>
+
+
+
+
+
+                <div class="Opnings-button">
+                    <a href="@Url.Action("TrainerRegister", "Admin")" style="text-decoration:none;font-size:40px;color:black;text-align:center">
+                        <h6>
+                            <div><img src="~/images/trainerr.png" /></div>
+                            <div>Register Trainer</div>
+                        </h6>
+                    </a>
+
+
+                </div>
+
+
+
+                <div class="Opnings-button">
+                    <a href="@Url.Action("TrainerRegister", "Admin")" style="text-decoration:none;font-size:40px;color:black;text-align:center">
+                        <h6>
+                            <div><img src="~/images/trainerr.png" /></div>
+                            <div>Fees Details</div>
+                        </h6>
+                    </a>
+
+
+                </div>
+
+
+
+
+
+                <div class="Opnings-button">
+                    <a href="@Url.Action("Home", "Demo")" style="text-decoration:none;font-size:40px;color:black;text-align:center">
+                        <h6>
+                            <div>
+                                <img src="~/images/atain.png" />
+                            </div>
+                            <div>
+                                Student Ataindance
+                            </div>
+
+
+                        </h6>
+                    </a>
+
+                </div>
+
+
+
+
+
+                <div class="Opnings-button">
+                    <a href="@Url.Action("Home", "Demo")" style="text-decoration:none;font-size:40px;color:black;text-align:center">
+                        <h6>
+                            <div><img src="~/images/job.png" /> </div>
+                            <div>Staipen Details</div>
+
+                        </h6>
+
+
+                    </a>
+
+                </div>
+
+
+
+
+                <div class="Opnings-button">
+                    <a href="@Url.Action("Home", "Demo")" style="text-decoration:none;font-size:40px;color:black;text-align:center">
+                        <h6>
+                            <div><img src="~/images/progress.png" /></div>
+                            <div>Progress Report</div>
+
+                        </h6>
+
+                    </a>
+
+
+
+
+                </div>
+
+
+
+
+                <div class="Opnings-button">
+                    <a href="@Url.Action("Display", "Admin")" style="text-decoration:none;font-size:40px;color:black;text-align:center">
+                        <h6>
+                            <div><img src="~/images/trainerr.png" /></div>
+                            <div>All student records</div>
+                        </h6>
+
+
+
+                    </a>
+
+
+
+                </div>
+
+
+            </div>
+
+        </section>
+    }
+</body>
+</html>

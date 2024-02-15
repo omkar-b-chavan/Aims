@@ -1,0 +1,143 @@
+﻿<style>
+    .header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        background-color: #0c0f37;
+        transition: all 0.2s;
+    }
+
+    .container-fluid {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+
+        .navbar ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+    #navbar li {
+        margin-right: 15px;
+    }
+
+    .navbar a, .navbar a:focus {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 0 15px 30px;
+        font-family: var(--font-default);
+        font-size: 20px;
+        font-weight: 500;
+        color: #fff;
+        white-space: nowrap;
+        transition: color 0.3s ease;
+    }
+
+    #navbar a:hover {
+        color: #F26522;
+    }
+
+    .mobile-nav-toggle {
+        cursor: pointer;
+        font-size: 1.5rem;
+        margin-right: 15px;
+        display: none;
+    }
+
+    @@media (max-width: 768px) {
+        .navbar li {
+            margin: 0;
+        }
+
+        #navbar li {
+            margin-right: 0;
+        }
+
+        .mobile-nav-toggle {
+            display: block;
+            cursor: pointer;
+        }
+
+        .navbar ul {
+            background-color: #0c0f37;
+            position: absolute;
+            margin-top: 50px;
+            right: 0;
+            width: 40%;
+            padding: 10px 0;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .navbar.active ul {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar a, .navbar a:focus {
+            padding: 4px 0;
+            font-size: small;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-family: var(--font-default);
+            color: #fff;
+            white-space: nowrap;
+            transition: color 0.3s ease;
+        }
+
+            .navbar a:hover {
+                color: #F26522;
+            }
+    }
+
+    .logo img {
+        padding: inherit;
+        width: 19%; /* Adjust the logo image size */
+        left: 0;
+    }
+</style>
+
+<script>
+    function mobileNavToggle() {
+        var navbar = document.getElementById('navbar');
+        navbar.classList.toggle('active');
+    }
+</script>
+
+<header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a class="logo d-flex align-items-center">
+            <img src="~/images/aims pune-logo-white-01 (1).png" />
+        </a>
+        <input type="button" class="mobile-nav-toggle" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" onclick="mobileNavToggle()" value="☰" style="right:0;">
+        <nav id="navbar" class="navbar">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li><a href="@Url.Action("Home", "Admin")">Home</a></li>
+                    <li><a href="@Url.Action("Home", "Demo")">About</a></li>
+                    <li><a href="@Url.Action("Home", "Demo")">Gallery</a></li>
+                    <li><a href="@Url.Action("Home", "Demo")">Team</a></li>
+                    <li><a href="@Url.Action("Home", "Demo")">Blogs</a></li>
+                    <li><a href="@Url.Action("Home", "Demo")">Career</a></li>
+                    <li><a href="@Url.Action("Home", "Demo")">Blogs</a></li>
+                    <li><a href="@Url.Action("UserProfile", "Admin")">Profile</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>

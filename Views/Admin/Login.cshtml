@@ -1,0 +1,245 @@
+﻿@using AimsManagement1.Models;
+@model StudTrainRegModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Login Page</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            z-index: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vw;
+        }
+
+
+
+
+
+        .content {
+            position: relative;
+            text-align: center;
+            padding: 20px 20px;
+            width: 130%;
+            background: white;
+            box-shadow: -1px 8px 28px 0px black;
+        }
+
+        .field {
+            position: relative;
+            height: 45px;
+            width: 100%;
+            display: flex;
+            background: cross-fade(gray);
+            box-shadow: -1px 4px 28px 0px gray;
+        }
+
+            .field input {
+                height: 100%;
+                width: 100%;
+                background: transparent;
+                border: none;
+                outline: none;
+                color: #222;
+                font-size: 16px;
+                font-family: 'Poppins', sans-serif;
+            }
+
+        .space {
+            margin-bottom: 16px;
+        }
+
+        .pass-key:valid ~ .show {
+            display: block;
+        }
+
+        .pass {
+            text-align: left;
+            margin: 10px 0;
+        }
+
+            .pass a {
+                color: black;
+                text-decoration: none;
+                font-family: 'Poppins', sans-serif;
+            }
+
+            .pass:hover a {
+                text-decoration: underline;
+            }
+
+        .field input[type="submit"] {
+            background: #3498db;
+            border: 1px solid #2691d9;
+            color: white;
+            font-size: 18px;
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+            .field input[type="submit"]:hover {
+                background: #2691d9;
+            }
+
+
+        @@media only screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center; /* Center content on small screens */
+            }
+
+
+
+
+            .content {
+                width: 100%;
+            }
+        }
+
+        @@import url("https://fonts.googleapis.com/css?family=Montserrat:700");
+
+        .hero {
+            background-color: #1070f1;
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            font-family: "Montserrat", sans-serif;
+        }
+
+
+
+        .cube {
+            position: absolute;
+            top: 80vh;
+            left: 20vw;
+            width: 10px;
+            height: 10px;
+            border: solid 1px orange;
+            transform-origin: top left;
+            transform: scale(0) rotate(0deg) translate(-50%, -50%);
+            -webkit-animation: cube 5s ease-in forwards infinite;
+            animation: cube 5s ease-in forwards infinite;
+        }
+
+            .cube:nth-child(2n) {
+                border-color: green;
+            }
+
+            .cube:nth-child(2) {
+                -webkit-animation-delay: 2s;
+                animation-delay: 2s;
+                left: 25vw;
+                top: 40vh;
+            }
+
+            .cube:nth-child(3) {
+                -webkit-animation-delay: 4s;
+                animation-delay: 4s;
+                left: 75vw;
+                top: 50vh;
+            }
+
+            .cube:nth-child(4) {
+                -webkit-animation-delay: 6s;
+                animation-delay: 6s;
+                left: 90vw;
+                top: 10vh;
+            }
+
+            .cube:nth-child(5) {
+                -webkit-animation-delay: 8s;
+                animation-delay: 8s;
+                left: 10vw;
+                top: 85vh;
+            }
+
+            .cube:nth-child(6) {
+                -webkit-animation-delay: 10s;
+                animation-delay: 10s;
+                left: 50vw;
+                top: 10vh;
+            }
+
+        @@-webkit-keyframes cube {
+            from {
+                transform: scale(0) rotate(0deg) translate(-50%, -50%);
+                opacity: 1;
+            }
+
+            to {
+                transform: scale(20) rotate(960deg) translate(-50%, -50%);
+                opacity: 0;
+            }
+        }
+
+        @@keyframes cube {
+            from {
+                transform: scale(0) rotate(0deg) translate(-50%, -50%);
+                opacity: 1;
+            }
+
+            to {
+                transform: scale(20) rotate(960deg) translate(-50%, -50%);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+
+        <div class="container" style="margin:-450px">
+
+
+            @using (Html.BeginForm())
+            {
+                <div class="content">
+                    <div>
+                        <img src="~/images/download.png" style="width: 80%; margin-bottom: 20px;" />
+                    </div>
+                    <div>
+                        <label for="Email" class="col-sm-3 control-label">Email*</label>
+                        <div class="field space">
+                            @Html.TextBoxFor(model => model.Email)
+                        </div>
+                    </div>
+                    <div>
+                        <label for="Password" class="col-sm-3 control-label">Password*</label>
+                        <div class="field">
+                            @Html.PasswordFor(model => model.Password)
+                        </div>
+                    </div>
+                    <div class="pass">
+                        <a href="@Url.Action("SendOtp", "OTP")" class="btn btn-info btn-md">Forget Password</a>
+                    </div>
+                    <div class="field">
+                        <input type="submit" value="LOGIN" name="Login">
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</body>
+</html>
