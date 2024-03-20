@@ -1,245 +1,334 @@
 ﻿@using AimsManagement1.Models;
 @model StudTrainRegModel
+
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Login Page</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainer Registration</title>
+    <link rel="stylesheet" href="https://relprod.relianceanimation.in/dist/css/bootstrap/bootstrap-min.css?v=1708805656">
+        <!-- Ripple JS -->
+    <link rel="stylesheet" href="https://relprod.relianceanimation.in/dist/plugins/ripple/ripple.css?v=1708805656">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://relprod.relianceanimation.in/dist/plugins/fontawesome/css/fa.min.css?v=1708805656">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="https://relprod.relianceanimation.in/dist/css/main-min.css?v=1708805656">      
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            z-index: 0;
-        }
+            body {
+                background-color: #fff;
+            }
 
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vw;
-        }
+            .form-container {
+                width: 420px;
+            }
 
+            .form-header {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem;
+            }
 
+            .form-header .header-image {
+                display: block;
+                margin: 0px;
+                padding: 0px;
+            }
 
+            .form-header .header-image img {
+                width: 128px;
+                height: 90px;
+            }
 
+            .form-header .header-title span {
+                font-size: 14pt;
+                font-weight: 500;
+                font-family: 'Roboto', sans-serif;
+            }
 
-        .content {
-            position: relative;
-            text-align: center;
-            padding: 20px 20px;
-            width: 130%;
-            background: white;
-            box-shadow: -1px 8px 28px 0px black;
-        }
+            label,
+            a {
+                font-weight: 500;
+            }
 
-        .field {
-            position: relative;
-            height: 45px;
-            width: 100%;
-            display: flex;
-            background: cross-fade(gray);
-            box-shadow: -1px 4px 28px 0px gray;
-        }
+            a {
+                font-size: 11pt;
+            }
 
-            .field input {
+            .form-control {
+                outline: 0px;
+                border: 0px;
+                line-height: 1.5;
+                height: auto;
+                padding: 0.75rem 1.25rem;
+                background-color: #f3f3f3;
+                font-size: 12pt;
+                letter-spacing: 0.5px;
+                border-radius: 8px;
+                font-family: 'Roboto', sans-serif;
+            }
+
+            .form-control:focus {
+                color: #495057;
+                background-color: #fff;
+                border-color: #007bff;
+                outline: 0;
+                box-shadow: 0 0 0 0.1rem rgba(16, 52, 166, 0.95);
+                transition: 0.2s ease-in-out;
+            }
+
+            #toggle_password {
+                background-color: #f3f3f3;
+                border-top-right-radius: 8px;
+                border-bottom-right-radius: 8px;
+            }
+
+            #toggle_password:focus {
+                box-shadow: none;
+            }
+
+            button[type="submit"] {
+                font-family: 'Roboto', sans-serif;
+            }
+
+            .login-divider>.before {
+                display: inline-flex;
+                width: 100%;
+                height: 4px;
+                background-color: #f3f3f3;
+            }
+
+            .login-divider>.middle {
+                padding: 1rem 1.5rem;
+                font-weight: 500;
+                font-family: 'Roboto', sans-serif;
+                color: #c3c3c3;
+            }
+
+            .login-divider>.after {
+                display: inline-flex;
+                width: 100%;
+                height: 4px;
+                background-color: #f3f3f3;
+            }
+
+            .login-image {
+                background: rgb(0, 97, 193);
+                background: linear-gradient(45deg,
+                        rgba(0, 97, 193, 0.75) 0%,
+                        rgba(67, 128, 217, 0.85) 20%,
+                        rgba(29, 191, 255, 0.95) 40%,
+                        rgba(82, 204, 252, 1) 60%,
+                        rgba(183, 229, 245, 1) 80%,
+                        rgba(222, 221, 242, 1) 100%);
+            }
+
+            .login-image figure {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
                 height: 100%;
                 width: 100%;
-                background: transparent;
-                border: none;
-                outline: none;
-                color: #222;
-                font-size: 16px;
-                font-family: 'Poppins', sans-serif;
             }
 
-        .space {
-            margin-bottom: 16px;
-        }
+            .login-image img {
+                width: 640px;
+                height: 640px;
 
-        .pass-key:valid ~ .show {
-            display: block;
-        }
-
-        .pass {
-            text-align: left;
-            margin: 10px 0;
-        }
-
-            .pass a {
-                color: black;
-                text-decoration: none;
-                font-family: 'Poppins', sans-serif;
             }
 
-            .pass:hover a {
-                text-decoration: underline;
+            @@media only screen and (max-width:36px) {
+                .login-image {
+                    display: none;
+                }
+
+                .form-container {
+                    width: auto;
+                }
             }
 
-        .field input[type="submit"] {
-            background: #3498db;
-            border: 1px solid #2691d9;
-            color: white;
-            font-size: 18px;
-            letter-spacing: 1px;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-        }
+            @@media only screen and (max-width:480px) {
+                .login-image {
+                    display: none;
+                }
 
-            .field input[type="submit"]:hover {
-                background: #2691d9;
+                .form-container {
+                    width: auto;
+                }
             }
 
-
-        @@media only screen and (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                align-items: center; /* Center content on small screens */
+            @@media only screen and (max-width:1024px) {
+                .login-image {
+                    display: none;
+                }
             }
+        </style>
+    </head>
+
+    <body>
+      
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-lg-6 vh-100">
+                    <div class="h-100 w-100 d-flex flex-column justify-content-center align-items-center">
 
 
-
-
-            .content {
-                width: 100%;
-            }
-        }
-
-        @@import url("https://fonts.googleapis.com/css?family=Montserrat:700");
-
-        .hero {
-            background-color: #1070f1;
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-            font-family: "Montserrat", sans-serif;
-        }
-
-
-
-        .cube {
-            position: absolute;
-            top: 80vh;
-            left: 20vw;
-            width: 10px;
-            height: 10px;
-            border: solid 1px orange;
-            transform-origin: top left;
-            transform: scale(0) rotate(0deg) translate(-50%, -50%);
-            -webkit-animation: cube 5s ease-in forwards infinite;
-            animation: cube 5s ease-in forwards infinite;
-        }
-
-            .cube:nth-child(2n) {
-                border-color: green;
-            }
-
-            .cube:nth-child(2) {
-                -webkit-animation-delay: 2s;
-                animation-delay: 2s;
-                left: 25vw;
-                top: 40vh;
-            }
-
-            .cube:nth-child(3) {
-                -webkit-animation-delay: 4s;
-                animation-delay: 4s;
-                left: 75vw;
-                top: 50vh;
-            }
-
-            .cube:nth-child(4) {
-                -webkit-animation-delay: 6s;
-                animation-delay: 6s;
-                left: 90vw;
-                top: 10vh;
-            }
-
-            .cube:nth-child(5) {
-                -webkit-animation-delay: 8s;
-                animation-delay: 8s;
-                left: 10vw;
-                top: 85vh;
-            }
-
-            .cube:nth-child(6) {
-                -webkit-animation-delay: 10s;
-                animation-delay: 10s;
-                left: 50vw;
-                top: 10vh;
-            }
-
-        @@-webkit-keyframes cube {
-            from {
-                transform: scale(0) rotate(0deg) translate(-50%, -50%);
-                opacity: 1;
-            }
-
-            to {
-                transform: scale(20) rotate(960deg) translate(-50%, -50%);
-                opacity: 0;
-            }
-        }
-
-        @@keyframes cube {
-            from {
-                transform: scale(0) rotate(0deg) translate(-50%, -50%);
-                opacity: 1;
-            }
-
-            to {
-                transform: scale(20) rotate(960deg) translate(-50%, -50%);
-                opacity: 0;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="hero">
-        <div class="cube"></div>
-        <div class="cube"></div>
-        <div class="cube"></div>
-        <div class="cube"></div>
-        <div class="cube"></div>
-        <div class="cube"></div>
-
-        <div class="container" style="margin:-450px">
-
-
-            @using (Html.BeginForm())
-            {
-                <div class="content">
-                    <div>
-                        <img src="~/images/download.png" style="width: 80%; margin-bottom: 20px;" />
-                    </div>
-                    <div>
-                        <label for="Email" class="col-sm-3 control-label">Email*</label>
-                        <div class="field space">
-                            @Html.TextBoxFor(model => model.Email)
-                        </div>
-                    </div>
-                    <div>
-                        <label for="Password" class="col-sm-3 control-label">Password*</label>
-                        <div class="field">
-                            @Html.PasswordFor(model => model.Password)
-                        </div>
-                    </div>
-                    <div class="pass">
-                        <a href="@Url.Action("SendOtp", "OTP")" class="btn btn-info btn-md">Forget Password</a>
-                    </div>
-                    <div class="field">
-                        <input type="submit" value="LOGIN" name="Login">
+                    @using (Html.BeginForm("", "", new { @class = "form-container" }))
+                    {
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-header">
+                                        <div class="header-title">
+                                            <span class="text-primary fw-400 fs-22">Login</span>
+                                        </div>
+                                        <figure class="header-image">
+                                        <img src="~/images/download.png" />
+                                        
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Hide this row for maintainance hidden="true" or hidden="false" -->
+                            <div class="row p-3">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="Email">Email</label>
+                                    @Html.TextBoxFor(model => model.Email, new { id = "username", name = "username", @class = "form-control", required = "required" })
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="Password">Password</label>
+                                        <div class="input-group">
+                                        @Html.PasswordFor(model => model.Password, new { id = "password", name = "password", @class = "form-control", required = "required" })
+                                            
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-light border-0 px-3" id="toggle_password"><i class="fas fa-eye fa-fw"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div class="form-group ml-4">
+                                            <input type="checkbox" class="form-check-input" id="remember_me" name="remember_me" />
+                                            <label class="form-check-label" for="remember_me">Remember Me</label>
+                                        </div>
+                                        <div class="form-group">
+                                        <a href="@Url.Action("SendOtp", "OTP")">Forget Password</a>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Hide this row for maintainance hidden="true" or hidden="false" -->
+                            <div class="row px-3">
+                                <div class="col-12">
+                                    <input type="submit" value="LOGIN" name="Login" id="login_button" class="btn btn-primary w-100 py-2 bxsh-0">
+                                    
+                                </div>
+                            </div>
+                            
+                            }
+                       
                     </div>
                 </div>
-            }
-
+                <!--End of Column 1 -->
+                <div class="col-lg-6 login-image">
+                    <figure>
+                    <img class="img-fluid" src="~/images/login-side-img.png" />
+               
+                    </figure>
+                </div>
+                <!--End of Column 2 -->
+            </div>
+            <!--End of Row -->
         </div>
 
-    </div>
-</body>
+        <!-- Scripts -->
+        <!-- JQuery JS -->
+    <script type="text/javascript" src="https://relprod.relianceanimation.in/dist/js/jquery/jquery.min.js?v=1708805656"></script>
+        <!-- Popper JS -->
+    <script type="text/javascript" src="https://relprod.relianceanimation.in/dist/js/popper/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script type="text/javascript" src="https://relprod.relianceanimation.in/dist/js/bootstrap/bootstrap.min.js"></script>
+    <!-- Ripple JS -->
+    <script type="text/javascript" src="https://relprod.relianceanimation.in/dist/plugins/ripple/ripple.js"></script>
+    <!-- Font Awesome JS -->
+    <script type="text/javascript" src="https://relprod.relianceanimation.in/dist/plugins/fontawesome/js/fa.min.js"></script>
+    <!-- Bootstrap Validator JS --> 
+	<script type="text/javascript" src="https://relprod.relianceanimation.in/dist/plugins/bs-validate/bootstrap-validate.min.js"></script>
+    <!-- Main JS -->
+    <script type="text/javascript" src="https://relprod.relianceanimation.in/dist/js/main.js?v=1708805656"></script>    
+    <script type="text/javascript">
+            $(document).ready(function () {
+
+                if (localStorage.checkbox && localStorage.checkbox !== "") {
+                    $("#remember_me").attr("checked", "checked");
+                    $("#username").val(localStorage.username);
+                } else {
+                    $(this).removeAttr("checked");
+                    $("#username").val("");
+                }
+
+                $.fn.lsRememberMe = function() {
+                    if ($("#remember_me").is(":checked") && $("#username").val() !== "") {
+                        localStorage.username = $("#username").val();
+                        localStorage.checkbox = $("#remember_me").val();
+                    } else {
+                        localStorage.username = "";
+                        localStorage.checkbox = "";
+                    }
+                }
+
+               
+                bootstrapValidate('#password', 'alphanum:Please only enter alphanumeric characters!');
+                $("#toggle_password").click(function () {
+                    if ($(this).find("svg").hasClass("fa-eye")) {
+                        $(this).find("svg").removeClass("fa-eye").addClass("fa-eye-slash");
+                    } else {
+                        $(this).find("svg").removeClass("fa-eye-slash").addClass("fa-eye");
+                    }
+                    var input = $(this).closest(".form-group").find("#password");
+                    if (input.attr("type") == "password") {
+                        input.attr("type", "text");
+                    } else {
+                        input.attr("type", "password");
+                    }
+                });
+                $("#login_form").on('submit', function (e) {
+                    e.preventDefault();
+                    $.fn.lsRememberMe();
+                    let username = $("#username").val();
+                    let password = $("#password").val();
+                    $.ajax({
+                        url: "section/authorize/Authorize.php",
+                        method: "post",
+                        data: { function: "verifyUser", username: username, password: password },
+                        encType: "application/x-www-form-urlencoded",
+                        success: function (data, status, xhr) {
+                            if (data.includes("Login Successfull")) {
+                                $("#login_message").closest(".row").attr("hidden", false);
+                                $("#login_message").css({color: "green"}).text(data).fadeIn().fadeOut(7500);
+                                setTimeout(() => {
+                                    window.location.href = 'index.php';
+                                }, 2000);
+                            } else {
+                                $("#login_message").closest(".row").attr("hidden", false);
+                                $("#login_message").css({color: "red"}).text(`Login Failed! ${data}`).fadeIn().fadeOut(7500);
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+
 </html>

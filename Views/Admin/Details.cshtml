@@ -1,0 +1,138 @@
+﻿@model AimsManagement1.Models.StudTrainRegModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Your custom CSS (if any) -->
+    <link rel="stylesheet" href="~/css/custom.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Student Dashboard</h1>
+        <!-- Display student details, fees, progress reports, etc. -->
+        <div class="row">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-uppercase">Student Details</h3>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.PassportPhoto)
+                        </dt>
+                        <dd class="col-sm-10">
+                            <img src="~/Uploads/@Model.PassportPhoto" class="img-thumbnail" height="100" width="100" asp-append-version="true" />
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.FirstName)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.LastName)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.LastName)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Address)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Address)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.District)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.District)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.State)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.State)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Email)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.PhoneNumber)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.PhoneNumber)
+                        </dd>
+                         <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Education)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Education)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Birthdate)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Birthdate)
+                        </dd>
+                        
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Age)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Age)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Course)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Course)
+                        </dd>
+                        
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.IdentityProof)
+                        </dt>
+                        <dd class="col-sm-10">
+                            <img src="~/Uploads/@Model.IdentityProof" class="img-thumbnail" height="100" width="100" asp-append-version="true" />
+                        </dd>
+                    </dl>
+                    <div>
+                        @* @{
+                            Html.BeginForm("ExportToPDF", "Admin", FormMethod.Post);
+                            {
+                                <div>
+                                    <input type="submit" value="Convert HTML to PDF" style="width:250px;height:27px" />
+                                </div>
+                            }
+                            Html.EndForm();
+                        } *@
+                        <a href="@Url.Action("GeneratePdf", "Admin",new{id = Model.Id})">Download Details as PDF</a>
+
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm btn-info rounded-0"><i class="fa fa-pencil-alt"></i> Edit</a>
+                        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-sm btn-danger rounded-0"><i class="fa fa-trash-alt"></i> Delete</a>
+                        <a asp-action="Index" class="btn btn-sm btn-primary rounded-0"><i class="fas fa-fast-backward"></i> Back to List</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Add similar cards for fees, progress reports, etc. -->
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS and any other JavaScript libraries -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Your custom JavaScript (if any) -->
+    <script src="~/js/custom.js"></script>
+</body>
+</html>

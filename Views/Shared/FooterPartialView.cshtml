@@ -1,28 +1,19 @@
 ﻿<style>
-    .bodyheader {
-        margin: 0;
-        max-height: auto;
-        font-family: Arial, sans-serif;
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
+   
 
     .footer {
-        position: relative;
-        height: fit-content;
-        margin-top: 150px;
+        position: relative; /* Change position to fixed */
+        bottom: 0; /* Position at the bottom of the viewport */
+        width: 100%;
         background: #3586ff;
-        min-height: 70px;
-        padding: 20px 50px;
+        padding: 20px 10px;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        margin-top:150px;
     }
+
 
     .social-icon,
     .menu {
@@ -30,7 +21,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 10px 0;
+       margin-top:20px;
         flex-wrap: wrap;
     }
 
@@ -74,7 +65,7 @@
     }
 
     .wave {
-        background-color: #f5f5f5;
+       
         position: absolute;
         top: -70px;
         left: 0;

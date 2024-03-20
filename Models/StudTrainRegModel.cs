@@ -60,11 +60,11 @@ namespace AimsManagement1.Models
         [Required(ErrorMessage = "Course is required.")]
         public string Course { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "PassportPhoto is required.")]
         [Display(Name = "Image")]
         public string PassportPhoto { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "IdentityProof is required.")]
         [Display(Name = "Image")]
         public string IdentityProof { get; set; }
         

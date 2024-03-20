@@ -1,4 +1,6 @@
 using AimsManagement1.Models;
+using DinkToPdf.Contracts;
+using DinkToPdf;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -8,10 +10,12 @@ builder.Services.AddSession(options => { options.IdleTimeout = TimeSpan.FromSeco
 
 builder.Services.AddHttpContextAccessor();
 // Add services to the container.
+
+
 builder.Services.AddControllersWithViews();
 var connectionstring = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<DataBaseContext>(options => { options.UseSqlServer(connectionstring); });
-
+builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

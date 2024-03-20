@@ -4,11 +4,12 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <OutputType>WinExe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DinkToPdf" Version="1.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="8.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -20,12 +21,46 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.1" />
+    <PackageReference Include="Syncfusion.HtmlToPdfConverter.Net.Windows" Version="24.2.7" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\Uploads\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\flags\4x3\cn.svg" />
+    <None Include="wwwroot\flags\4x3\es.svg" />
+    <None Include="wwwroot\flags\4x3\fr.svg" />
+    <None Include="wwwroot\flags\4x3\ru.svg" />
+    <None Include="wwwroot\flags\4x3\us.svg" />
+    <None Include="wwwroot\fonts\boxicons\boxicons.woff2" />
+    <None Include="wwwroot\fonts\flags\1x1\ar.svg" />
+    <None Include="wwwroot\fonts\flags\1x1\au.svg" />
+    <None Include="wwwroot\fonts\flags\1x1\br.svg" />
+    <None Include="wwwroot\fonts\flags\1x1\fr.svg" />
+    <None Include="wwwroot\fonts\flags\1x1\in.svg" />
+    <None Include="wwwroot\fonts\flags\1x1\us.svg" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\fonts\fontawesome-webfont3e6e.woff2" />
+    <None Include="wwwroot\fonts\Inter-Bold.woff2" />
+    <None Include="wwwroot\fonts\Inter-Medium.woff2" />
+    <None Include="wwwroot\fonts\Inter-Regular.woff2" />
+    <None Include="wwwroot\fonts\Inter-SemiBold.woff2" />
+    <None Include="wwwroot\fonts\line-awesome.woff2" />
+    <None Include="wwwroot\fonts\materialdesignicons-webfont.woff2" />
+    <None Include="wwwroot\js\app-menu.min.js" />
+    <None Include="wwwroot\js\app.min.js" />
+    <None Include="wwwroot\js\chartist-plugin-tooltip.min.js" />
+    <None Include="wwwroot\js\chartist.min.js" />
+    <None Include="wwwroot\js\customizer.min.js" />
+    <None Include="wwwroot\js\dashboard-analytics.min.js" />
+    <None Include="wwwroot\js\jquery.sharrre.js" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\switch.min.js" />
+    <None Include="wwwroot\js\switchery.min.js" />
+    <None Include="wwwroot\js\vendors.min.js" />
   </ItemGroup>
 
 </Project>

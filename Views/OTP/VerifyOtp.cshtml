@@ -1,6 +1,8 @@
 ﻿@model OTPModel
+
 @{
     Layout = null;
+
 }
 
 <!DOCTYPE html>
@@ -64,154 +66,41 @@
             overflow: hidden;
         }
 
-        .glowing {
-            position: relative;
-            min-width: 700px;
-            height: 550px;
-            margin: -350px;
-            transform-origin: right;
-            animation: colorChange 5s linear infinite;
-        }
+       
 
-            .glowing:nth-child(even) {
-                transform-origin: left;
-            }
-
-        @@keyframes colorChange {
-            0% {
-                filter: hue-rotate(0deg);
-                transform: rotate(0deg);
-            }
-
-            100% {
-                filter: hue-rotate(360deg);
-                transform: rotate(360deg);
-            }
-        }
-
-        .glowing span {
-            position: absolute;
-            top: calc(80px * var(--i));
-            left: calc(80px * var(--i));
-            bottom: calc(80px * var(--i));
-            right: calc(80px * var(--i));
-        }
-
-            .glowing span::before {
-                content: "";
-                position: absolute;
-                top: 50%;
-                left: -8px;
-                width: 15px;
-                height: 15px;
-                background: #f00;
-                border-radius: 50%;
-            }
-
-            .glowing span:nth-child(3n + 1)::before {
-                background: rgba(134,255,0,1);
-                box-shadow: 0 0 20px rgba(134,255,0,1), 0 0 40px rgba(134,255,0,1), 0 0 60px rgba(134,255,0,1), 0 0 80px rgba(134,255,0,1), 0 0 0 8px rgba(134,255,0,.1);
-            }
-
-            .glowing span:nth-child(3n + 2)::before {
-                background: rgba(255,214,0,1);
-                box-shadow: 0 0 20px rgba(255,214,0,1), 0 0 40px rgba(255,214,0,1), 0 0 60px rgba(255,214,0,1), 0 0 80px rgba(255,214,0,1), 0 0 0 8px rgba(255,214,0,.1);
-            }
-
-            .glowing span:nth-child(3n + 3)::before {
-                background: rgba(0,226,255,1);
-                box-shadow: 0 0 20px rgba(0,226,255,1), 0 0 40px rgba(0,226,255,1), 0 0 60px rgba(0,226,255,1), 0 0 80px rgba(0,226,255,1), 0 0 0 8px rgba(0,226,255,.1);
-            }
-
-            .glowing span:nth-child(3n + 1) {
-                animation: animate 10s alternate infinite;
-            }
-
-            .glowing span:nth-child(3n + 2) {
-                animation: animate-reverse 3s alternate infinite;
-            }
-
-            .glowing span:nth-child(3n + 3) {
-                animation: animate 8s alternate infinite;
-            }
-
-        @@keyframes animate {
-            0% {
-                transform: rotate(180deg);
-            }
-
-            50% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        @@keyframes animate-reverse {
-            0% {
-                transform: rotate(360deg);
-            }
-
-            50% {
-                transform: rotate(180deg);
-            }
-
-            100% {
-                transform: rotate(0deg);
-            }
-        }
+        
     </style>
 </head>
 <body>
-    <div class="glowing">
+    
+    @inject IHttpContextAccessor HttpContextAccessor
 
-        <span style="--i:1;"></span>
+    @{
+        var session = HttpContextAccessor.HttpContext.Session;
 
-        <span style="--i:2;"></span>
+        // Retrieve the start time of the OTP verification session
+        var otpStartTime = session.GetString("OTPSessionStartTime");
+        if (string.IsNullOrEmpty(otpStartTime))
+        {
+            // If the session start time is not set, set it to the current time
+            otpStartTime = DateTime.UtcNow.ToString();
+            session.SetString("OTPSessionStartTime", otpStartTime);
+        }
 
-        <span style="--i:3;"></span>
+        // Calculate the remaining time for OTP verification
+        var currentTime = DateTime.UtcNow;
+        var otpSessionTimeout = TimeSpan.FromSeconds(180);
+        var elapsedTime = currentTime - DateTime.Parse(otpStartTime);
+        var remainingTime = (int)(otpSessionTimeout.TotalSeconds - elapsedTime.TotalSeconds);
+        if (remainingTime < 0)
+        {
+            remainingTime = 0; // Ensure remaining time is non-negative
+        }
+    }
 
-    </div>
-
-    <div class="glowing">
-
-        <span style="--i:1;"></span>
-
-        <span style="--i:2;"></span>
-
-        <span style="--i:3;"></span>
-
-    </div>
-
-    <div class="glowing">
-
-        <span style="--i:1;"></span>
-
-        <span style="--i:2;"></span>
-
-        <span style="--i:3;"></span>
-
-    </div>
-
-    <div class="glowing">
-
-        <span style="--i:1;"></span>
-
-        <span style="--i:2;"></span>
-
-        <span style="--i:3;"></span>
-
-    </div>
     @using (Html.BeginForm())
     {
-
-        <div class="container" style=" max-width: 500px;
-            padding: 20px 20px 20px 70px;
-            margin: 0 auto;
-            border-radius: 0.3em;
-            background-color: #f2f2f2;height:300px;text-align:center;">
+        <div class="container" style="max-width: 500px; padding: 20px 20px 20px 70px; margin: 0 auto; border-radius: 0.3em; background-color: #f2f2f2; height:300px; text-align:center;">
             <section class="container-fluid bg-body-tertiary d-block">
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-6 col-lg-4" style="min-width: 500px;">
@@ -222,17 +111,17 @@
 
                                 <div class="otp-field mb-4">
                                     @Html.TextBoxFor(model => model.Otp)
-
                                 </div>
+
+                                <div id="timer" class="mb-3">Time remaining: <span id="countdown">@remainingTime</span> seconds</div>
 
                                 <div>
                                     <input type="submit" name="submit" class="btn btn-info btn-md" value="Verify Otp">
                                 </div>
 
+                                <p id="expiredMessage" class="text-danger" style="display: none;">OTP has expired.</p>
 
-                                <p class="resend text-muted mb-0">
-                                    Didn't receive code? <a href="@Url.Action("SendOtp", "OTP")">Request again</a>
-                                </p>
+                                <p class="resend text-muted mb-0">Didn't receive code? <a href="@Url.Action("SendOtp", "OTP")">Request again</a></p>
                             </div>
                         </div>
                     </div>
@@ -240,5 +129,12 @@
             </section>
         </div>
     }
+
+
+    }
+
+  
+    
+
 </body>
 </html>

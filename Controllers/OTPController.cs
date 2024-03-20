@@ -18,6 +18,19 @@ namespace AimsManagement1.Controllers
         public IActionResult SendOtp()
 
         {
+            var otpStartTime = HttpContext.Session.GetString("OTPSessionStartTime");
+            if (string.IsNullOrEmpty(otpStartTime))
+            {
+                // If the session start time is not set, set it to the current time
+                otpStartTime = DateTime.UtcNow.ToString();
+                HttpContext.Session.SetString("OTPSessionStartTime", otpStartTime);
+            }
+
+            // Calculate the remaining time for OTP verification
+            var currentTime = DateTime.UtcNow;
+            var otpSessionTimeout = TimeSpan.FromSeconds(180);
+            var elapsedTime = currentTime - DateTime.Parse(otpStartTime);
+           
             return View();
         }
 
@@ -27,6 +40,12 @@ namespace AimsManagement1.Controllers
         {
 
             var ex = (from object1 in _context.StudTrainRegModels where object1.Email == obj.Email select object1).Any();
+
+            
+
+
+
+
 
             if (ex)
             {

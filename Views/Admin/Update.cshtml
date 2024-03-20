@@ -1,229 +1,213 @@
-﻿@using AimsManagement1.Models;
-@model StudTrainRegModel
+﻿@model AimsManagement1.ViewModels.StudTrainViewModel
 
 @{
     ViewData["Title"] = "Register";
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Registration</title>
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <style>
-        .body1 {
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f5f5f5;
-            margin: 0;
-        }
 
-        .form1 {
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            width: 40%;
-            text-align: center;
-            overflow: hidden;
-        }
+<style>
+    .card-header h3 {
+        text-align: center;
+    }
+</style>
 
-        label {
-            display: block;
-            margin: 10px 0;
-            font-weight: bold;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        button {
-            background-color: #3498db;
-            color: white;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-            button:hover {
-                background-color: #2691d9;
-            }
-
-        @@media only screen and (max-width: 768px) {
-            .form1 {
-                width: 90%; /* Adjust the width for small screens */
-                max-width: none; /* Remove max-width for small screens */
-            }
-
-            input {
-                margin-bottom: 10px; /* Adjust the margin for small screens */
-            }
-        }
-    </style>
-</head>
-<body>
-
-
-
-    <div class="body1" id="body1">
-
-
-        <div class="form1" id="form1">
-
-            @using (Html.BeginForm("StdRegister", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", }))
-            {
-
-                <h2>Student Registration</h2>
-                <label for="firstName">First Name</label>
-                @Html.TextBoxFor(m => m.FirstName, new { type = "text", id = "firstName", name = "firstName" })
-                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
-
-                <label for="lastName">Last Name</label>
-                @Html.TextBoxFor(m => m.LastName, new { type = "text", id = "lastName", name = "lastName" })
-                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
-
-                <label for="address">Address</label>
-                @Html.TextBoxFor(m => m.Address, new { type = "text", id = "Address", name = "Address" })
-                @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
-
-                <label for="district">District</label>
-                @Html.TextBoxFor(m => m.District, new { type = "text", id = "District", name = "District" })
-                @Html.ValidationMessageFor(m => m.District, "", new { @class = "text-danger" })
-
-                <label for="state">State</label>
-                @Html.TextBoxFor(m => m.State, new { type = "text", id = "State", name = "State" })
-                @Html.ValidationMessageFor(m => m.State, "", new { @class = "text-danger" })
-
-                <label for="email">Email</label>
-                @Html.TextBoxFor(m => m.Email, new { type = "email", id = "email", name = "email" })
-                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-
-                <label for="phone">Phone Number</label>
-                @Html.TextBoxFor(m => m.PhoneNumber, new { type = "tel", id = "phone", name = "phone" })
-                @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
-
-
-                <label for="password">Password</label>
-                @Html.TextBoxFor(m => m.Password, new { type = "password", id = "password", name = "password" })
-                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-
-
-                <label for="confirmPassword">Confirm Password</label>
-                @Html.TextBoxFor(m => m.ConfirmPassword, new { type = "password", id = "confirmPassword", name = "confirmPassword" })
-                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
-
-
-
-                <label for="education">Education</label>
-                @Html.TextBoxFor(m => m.Education, new { type = "education", id = "Education", name = "Education" })
-                @Html.ValidationMessageFor(m => m.Education, "", new { @class = "text-danger" })
-
-
-
-                <label for="birthdate">Birthdate</label>
-                @Html.TextBoxFor(m => m.Birthdate, new { type = "date", id = "birthdate", name = "birthdate" })
-                @Html.ValidationMessageFor(m => m.Birthdate, "", new { @class = "text-danger" })
-
-
-                <label for="age">Age</label>
-                @Html.TextBoxFor(m => m.Age, new { type = "text", id = "age", name = "age", })
-                @Html.ValidationMessageFor(m => m.Age, "", new { @class = "text-danger" })
-
-
-                <label for="course">Course</label>
-                @Html.TextBoxFor(m => m.Course, new { type = "text", id = "course", name = "course" })
-                @Html.ValidationMessageFor(m => m.Course, "", new { @class = "text-danger" })
-
-
-
-                @Html.TextBoxFor(m => m.PassportPhoto, new { type = "file", id = "passportPhoto", name = "passportPhoto", accept = "image/*", onchange = "previewImage('passportPhoto', 'passportPhotoPreview')" })
-
-
-
-                <div id="passportPhotoPreview" class="image-preview"></div>
-
-                <label for="identityPhoto">Identity Proof</label>
-
-                @Html.TextBoxFor(m => m.IdentityProof, new { type = "file", id = "identityPhoto", name = "identityPhoto", accept = "image/*", onchange = "previewImage('passportPhoto', 'passportPhotoPreview')" })
-
-
-                <div id="identityPhotoPreview" class="image-preview"></div>
-
-
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-
-                <div id="errorMessages" class="error-message"></div>
-            }
+    <div class="card">
+        <div class="card-header">
+            <h3 class="text-uppercase">Update Record</h3>
         </div>
+        <div class="card-body">
+        <form asp-action="Update" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="FirstName" class="control-label"></label>
+                            <input asp-for="FirstName" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                    </div>
 
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="LastName" class="control-label"></label>
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
 
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Address" class="control-label"></label>
+                            <input asp-for="Address" class="form-control" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                    </div>
+                 </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="District" class="control-label"></label>
+                            <input asp-for="District" class="form-control" />
+                            <span asp-validation-for="District" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="State" class="control-label"></label>
+                            <input asp-for="State" class="form-control" />
+                            <span asp-validation-for="State" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PhoneNumber" class="control-label"></label>
+                            <input asp-for="PhoneNumber" class="form-control" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Password" class="control-label"></label>
+                            <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="ConfirmPassword" class="control-label"></label>
+                            <input asp-for="ConfirmPassword" class="form-control" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Education" class="control-label"></label>
+                            <input asp-for="Education" class="form-control" />
+                            <span asp-validation-for="Education" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Birthdate" class="control-label"></label>
+                            <input asp-for="Birthdate" class="form-control" />
+                            <span asp-validation-for="Birthdate" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Age" class="control-label"></label>
+                            <input asp-for="Age" class="form-control" />
+                            <span asp-validation-for="Age" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Course" class="control-label"></label>
+                            <input asp-for="Course" class="form-control" />
+                            <span asp-validation-for="Course" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="PassportPhoto" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="PassportPhoto" class="custom-file-input" id="PassportPhoto" name="PassportPhoto" accept="image/*" onchange="previewImage('PassportPhoto', 'PassportPhotoPreview')" />
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <div id="PassportPhotoPreview" class="image-preview"></div>
+                    <span asp-validation-for="PassportPhoto" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="IdentityProof" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="IdentityProof" class="custom-file-input" id="IdentityProof" name="IdentityProof" accept="image/*" onchange="previewImage('IdentityProof', 'identityPhotoPreview')" />
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <div id="identityPhotoPreview" class="image-preview"></div>
+                    <span asp-validation-for="IdentityProof" class="text-danger"></span>
+                </div>
+            </div>
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-sm btn-primary rounded-0" />
+                    <a asp-action="Index" class="btn btn-sm btn-primary rounded-0">Back to List</a>
+                </div>
+            </form>
+        </div>
     </div>
+
+@section Scripts {
     <script>
-        $(document).ready(function () {
-            // When the value of birthdate changes
-            $('#birthdate').on('change', function () {
-                var birthDate = new Date($(this).val()); // Parse birth date as a Date object
-                var today = new Date(); // Get today's date
-
-                // Calculate age
-                var age = today.getFullYear() - birthDate.getFullYear();
-                var monthDiff = today.getMonth() - birthDate.getMonth();
-
-                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-                    age--;
-                }
-
-                // Set the value of Age text box
-                $('#age').val(age);
-            });
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
     </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+<script>
+    function previewImage(inputId, previewId) {
+        const input = document.getElementById(inputId);
+        const preview = document.getElementById(previewId);
+        const file = input.files[0];
 
-    <script>
-        function previewImage(inputId, previewId) {
-            const input = document.getElementById(inputId);
-            const preview = document.getElementById(previewId);
-            const file = input.files[0];
+        if (file) {
+            const reader = new FileReader();
 
-            if (file) {
-                const reader = new FileReader();
-
-                reader.onload = function (e) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-
-                    img.style.width = '200px';
-                    img.style.height = '150px';
-
-                    preview.innerHTML = '';
-                    preview.appendChild(img);
-                };
-
-                reader.readAsDataURL(file);
-            } else {
+            reader.onload = function (e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.width = '200px';
+                img.style.height = '150px';
+                img.style.border = '2px solid #ccc'; // Example border styling
+                img.style.borderRadius = '8px'; // Example border-radius
+                img.style.marginTop = '10px'; // Example margin
+                img.style.boxShadow = '0px 20px 60px rgba(2, 4, 6, 0.1)';
                 preview.innerHTML = '';
-            }
+                preview.appendChild(img);
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            preview.innerHTML = '';
         }
+    }
 
 
-    </script>
-</body>
-</html>
-
+</script>  

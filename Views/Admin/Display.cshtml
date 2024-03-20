@@ -3,18 +3,22 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/MainLayout.cshtml";
+
 }
 <style>
     table {
         width: 100%;
         border-collapse: collapse;
         margin-bottom: 20px;
+        margin-right: 0;
         height: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
     th, td {
         border: 1px solid black;
-        padding: 8px;
+        vertical-align: middle;
         text-align: left;
     }
 
@@ -25,9 +29,25 @@
     tr:hover {
         background-color: white;
     }
-</style>
-<h3 class="text-center text-uppercase">All Student</h3>
 
+    .card-header h3 {
+        text-align: center;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        .action-buttons a {
+            flex: 1;
+            margin-right: 5px; /* Adjust margin as needed */
+        }
+</style>
+<div class="card-header">
+    <h3 class="text-uppercase">All Student</h3>
+</div>
 <p>
     <a asp-action="StdRegister" class="btn btn-primary rounded-0"><i class="fa fa-plus-circle"></i> Add New</a>
 </p>
@@ -40,7 +60,7 @@
             <th>@Html.DisplayNameFor(model => model.LastName)</th>
             <th>@Html.DisplayNameFor(model => model.Education)</th>
             <th>@Html.DisplayNameFor(model => model.Course)</th>
-           
+
             <th>Action(s)</th>
         </tr>
     </thead>
@@ -62,9 +82,9 @@
                 <td>@item.LastName</td>
                 <td>@item.Education</td>
                 <td>@item.Course</td>
-               
-                <td>
-                    
+
+                <td class="action-buttons">
+
                     <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary rounded-0"><i class="fa fa-plus-circle"></i>Details</a>
                     <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-primary rounded-0"><i class="fa fa-plus-circle"></i>Update</a>
                     <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary rounded-0"><i class="fa fa-plus-circle"></i>Delete</a>
